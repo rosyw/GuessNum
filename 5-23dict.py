@@ -1,10 +1,23 @@
 import random
 
-name = input('请输入你的姓名：')
-min_round = 0  # 记录最少猜的轮数
-total = 0  # 记录总游戏轮数
-times = 0  # 记录游戏次数
+# 读取玩家数据
+with open('game_one_user.txt') as f:
+    data = f.read()
+    data = data.split()
+    # 把字符串转换成整型
+    data_key = [int(i) for i in data[1:]]
+    # 新建字典管理玩家数据
+    rank = {}
+    rank[data[0]] = data_key
+    print(rank)
 
+name = input('请输入你的姓名：')
+if name in rank:
+    former_avg = '%0.2f'% (rank[name][2]/rank[name][0])
+    print(f'{name}，你已经玩了{rank[name][0]}次，最少{rank[name][1]}轮猜出答案，平均{former_avg}轮猜出答案。开始游戏！')
+    min_round = rank[name][1]  # 记录最少猜的轮数
+    times = rank[name][0]  # 记录游戏次数
+    total = rank[name][2]  # 记录总游戏轮数
 while True:
     times += 1
     num = random.randint(1, 100)
@@ -33,13 +46,7 @@ while True:
         print('退出游戏，欢迎下次再来挑战！')
         break
 
-# # 把需写入文本的信息放入列表
-# record = [f'玩家姓名：{name}',f'总游戏次数：{times}',f'最快猜出的轮数：{min_round}',f'总游戏轮数：{count}']
-# # 写入文本，每个元素后换行
-# with open('game_one_user.txt', 'w') as f:
-#     f.writelines([i +'\n' for i in record])
 
-# 把需写入文本的信息放入列表
 record = f'{name} {times} {min_round} {total}'
 # 写入文本，每个元素后换行
 with open('game_one_user.txt', 'w') as f:
