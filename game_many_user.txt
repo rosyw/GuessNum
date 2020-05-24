@@ -1,0 +1,4 @@
+rosy 3 3 13
+magic 1 8 8
+rourou 2 6 16
+yi 1 8 8
