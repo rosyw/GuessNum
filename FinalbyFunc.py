@@ -8,7 +8,10 @@ def oneRound(num):
     while True:
         try:
             guess = int(input('猜猜我想的是哪个数（1-100的整数）：'))
-        except:
+        except ValueError:
+            print('你输入的是其他字符哦')
+            continue
+        except TypeError:
             print('你猜的不是整数哦')
             continue
         # 每次猜数前计一次，count +=1 在输入的前后位置决定是否将输入异常计入猜的轮数
@@ -17,7 +20,6 @@ def oneRound(num):
         # 通过条件判断是否才对
         if guess > 100 or guess < 1:
             print('你输入的数已超出范围')
-            continue
         elif guess < num:
             print('猜小了，再试试')
         elif guess > num:
@@ -42,12 +44,19 @@ def guessNum(times = 0,min_round = 0,total = 0):
             min_round = count2
         print(f'{name},你已经玩了{times}次，最少{min_round}轮猜出答案，平均{avg}轮猜出答案。')
         goon = input('是否继续游戏？（输入y继续，其他退出）')
-        if goon == 'y' or goon == 'Y':
-            True
-        else:
+        # if goon == 'y' or goon == 'Y':
+        #     True
+        # else:
+        #     print('退出游戏，欢迎下次再来挑战！')
+        #     # 把总次数，最快轮数，总轮数返回成一个列表
+        #     return [times,min_round,total]
+        #     break
+
+
+        if goon !='y' and goon != 'Y':# if goon not in 'Yy':  if goon.lower() !='y'
             print('退出游戏，欢迎下次再来挑战！')
             # 把总次数，最快轮数，总轮数返回成一个列表
-            return [times,min_round,total]
+            return [times, min_round, total]
             break
 
 # 定义一个main()函数，读取、匹配和写入数据
@@ -69,7 +78,7 @@ def main():
             # print(all_record)
     except:
         f = open('game_many_user.txt','w')
-        f.close()
+        # f.close()
 
 
     # 把name设置为全局变量，可在guessNum()函数中调用
