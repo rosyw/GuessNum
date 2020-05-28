@@ -30,9 +30,7 @@ def guessNum(times = 0,min_round = 0,total = 0):
             min_round = count2
         print(f'{name},你已经玩了{times}次，最少{min_round}轮猜出答案，平均{avg}轮猜出答案。')
         goon = input('是否继续游戏？（输入y继续，其他退出）')
-        if goon == 'y' or goon == 'Y':
-            True
-        else:
+        if goon not in 'Yy':
             print('退出游戏，欢迎下次再来挑战！')
             # 把总次数，最快轮数，总轮数返回成一个列表
             return [times,min_round,total]
