@@ -52,10 +52,10 @@ def guessNum(times = 0,min_round = 0,total = 0):
 
 # 定义一个main()函数，读取、匹配和写入数据
 def main():
+    all_record = {}
     # 读取文本内容转换成字典
     try:
         with open('game_many_user.txt') as f:
-            all_record = {}
             data = f.readlines()
             # 以字典形式提取每个玩家的游戏记录，所有玩家的字典放在一个列表中
             for i in data:
@@ -70,7 +70,7 @@ def main():
     except:
         f = open('game_many_user.txt','w')
         f.close()
-        all_record = {}
+
 
     # 把name设置为全局变量，可在guessNum()函数中调用
     global name
