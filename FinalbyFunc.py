@@ -26,16 +26,18 @@ def oneRound(num):
             print(f'猜对了！你一共猜了{count}轮')
             return count
             break  # 猜对跳出循环
-    # return count  # 返回值放在循环外，可避免除数为0的情况
+
 #定义一个函数表示游戏的外部循环，可以猜多次
 def guessNum(times = 0,min_round = 0,total = 0):
     while True:
         req = requests.get('https://python666.cn/cls/number/guess/')
         num = int(req.text)
+
         times += 1
         count2 = oneRound(num)
         total += count2
         avg = '%0.2f' % (total / times)  # format( total/times , '.2f')
+
         if min_round == 0 or min_round > count2:
             min_round = count2
         print(f'{name},你已经玩了{times}次，最少{min_round}轮猜出答案，平均{avg}轮猜出答案。')
@@ -73,6 +75,7 @@ def main():
     # 把name设置为全局变量，可在guessNum()函数中调用
     global name
     name = input('请输入你的姓名：')
+
     # 如果name可匹配字典的键，则还原之前的数据
     if name in all_record.keys():
         former_avg = '%0.2f' % (all_record[name][2] / all_record[name][0])
